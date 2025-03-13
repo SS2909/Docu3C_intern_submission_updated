@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Brief Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #results {
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Upload Legal Brief</h2>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" accept=".pdf" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    <div id="loading" style="display: none;">
+        <p>Processing document... Please wait.</p>
+    </div>
+
+    <div id="results">
+        <h3>Extracted Key Arguments</h3>
+        <pre id="output"></pre>
+    </div>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let fileInput = document.getElementById("fileInput").files[0];
+            if (!fileInput) {
+                alert("Please select a file.");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("file", fileInput);
+
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("results").style.display = "none";
+
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("results").style.display = "block";
+                document.getElementById("output").textContent = data.arguments;
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            });
+        });
+    </script>
+
+</body>
+</html>
