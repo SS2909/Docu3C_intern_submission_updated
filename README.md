@@ -1,4 +1,4 @@
-# DOCU3C_intern_submission
+# DOCU3C_intern_submission_updated
 # Problem Statement # 1 : Developing a Strategic Legal Preparation Tool (AI & Machine Learning)
 
 In the fast-paced world of legal proceedings, thorough preparation is the cornerstone of success. As a technology expert collaborating with a seasoned attorney, you are tasked with developing an innovative application to aid in the meticulous preparation for an upcoming court case. The attorney, renowned for her comprehensive approach, requires a tool that will distill the essence of the document titled "Amicus Brief on behalf of Mississippi, Alabama, Arkansas."
